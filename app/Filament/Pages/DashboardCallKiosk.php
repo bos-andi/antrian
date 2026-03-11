@@ -75,6 +75,11 @@ class DashboardCallKiosk extends Page
 
         if ($nextQueue) {
             $nextQueue->update(['called_at' => null]);
+
+            // Dispatch suara: langsung saat operator klik Panggil
+            $spokenNumber = preg_replace('/([A-Za-z])(\d+)/', '$1-$2', $nextQueue->number);
+            $message = "Nomor antrian $spokenNumber dipersilakan ke " . $nextQueue->counter->name;
+            $this->dispatch('queue-called', $message);
         }
     }
 

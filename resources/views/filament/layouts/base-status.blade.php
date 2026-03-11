@@ -12,7 +12,10 @@
 </head>
 
 <body style="font-family: 'poppins';" class="flex flex-col min-h-screen font-sans antialiased">
-    {{ $slot }}
+    <div class="flex-1">{{ $slot }}</div>
+    <footer class="py-3 text-center text-sm text-gray-500">
+        <a href="https://andidev.id" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">Powered by <span class="font-semibold">andidev</span></a>
+    </footer>
 </body>
 
 

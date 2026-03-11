@@ -6,6 +6,8 @@ use App\Services\QueueService;
 use App\Services\ThermalPrinterService;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,5 +35,11 @@ class AppServiceProvider extends ServiceProvider
             Js::make('thermal-printer', asset('js/thermal-printer.js')),
             Js::make('call-queue', asset('js/call-queue.js'))
         ]);
+
+        $poweredBy = fn () => view('components.powered-by-andidev');
+
+        FilamentView::registerRenderHook(PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, $poweredBy);
+        FilamentView::registerRenderHook(PanelsRenderHook::FOOTER, $poweredBy);
+        FilamentView::registerRenderHook(PanelsRenderHook::SIDEBAR_FOOTER, $poweredBy);
     }
 }

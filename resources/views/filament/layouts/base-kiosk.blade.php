@@ -15,10 +15,14 @@
 </head>
 
 <body style="font-family: 'poppins';" class="flex flex-col min-h-screen font-sans antialiased bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50">
-    <main>
+    <main class="flex-1">
         {{ $slot }}
     </main>
+    <footer class="py-3 text-center text-sm text-gray-500">
+        <a href="https://andidev.id" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">Powered by <span class="font-semibold">andidev</span></a>
+    </footer>
 
+    <script src="{{ asset('js/call-queue.js') }}"></script>
     @stack('scripts')
     <script>
         // Fullscreen functionality

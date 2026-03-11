@@ -267,7 +267,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `counter_id`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$12$SXD6ZOvgxBs/R0V6x0g//OHII9QpZ6xhhRiRXEMHxgNhaM8evjyQa', NULL, '2025-07-03 16:05:41', '2025-07-06 00:14:31', 'admin', 2),
+(1, 'Admin', 'admin@andidev.id', NULL, '$2y$10$7Tv0G/IFCH/k04TMnGpRWumYwfsAbpeMEXFrW8e9dleviBalr9lLa', NULL, '2025-07-03 16:05:41', '2025-07-06 00:14:31', 'admin', 2),
 (2, 'Petugas 1', 'petugas1@gmail.com', NULL, '$2y$12$RYeQLBJ.4eMkBCscg0Sxhe/yFsBGadklbCXIRFIiMvbQuiCXxmNp6', NULL, '2025-07-12 17:24:42', '2025-07-12 17:28:27', 'operator', 2),
 (3, 'Petugas 2', 'petugas2@gmail.com', NULL, '$2y$12$Ieo58YoWCvlA6HsjX5UjPeJ6pIadPPOF4GE6GY/F.rmQeEEKUGVdm', NULL, '2025-07-12 17:25:23', '2025-07-12 17:25:23', 'operator', 3),
 (4, 'Petugas 3', 'petugas3@gmail.com', NULL, '$2y$12$wEm7fxD/8UeFlD/H287kl.uzK1SqV4HFqSWnb11Hdb.dcvQTBbfye', NULL, '2025-07-12 17:25:56', '2025-07-12 17:25:56', 'operator', 4),

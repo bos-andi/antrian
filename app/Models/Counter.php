@@ -13,8 +13,9 @@ class Counter extends Model
     protected static function booted()
     {
         static::addGlobalScope('roleBasedAccess', function(Builder $builder) {
-            if (auth()->user()->role === 'operator') {
-                $builder->where('id', auth()->user()->counter_id);
+            $user = auth()->user();
+            if ($user && $user->role === 'operator') {
+                $builder->where('id', $user->counter_id);
             }
         });
     }

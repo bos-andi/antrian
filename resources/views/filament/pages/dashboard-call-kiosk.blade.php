@@ -369,4 +369,8 @@
             </div>
         @endif
     </div>
+
+    @push('scripts')
+    <script src="{{ asset('js/call-queue.js') }}"></script>
+    @endpush
 </x-filament-panels::page>

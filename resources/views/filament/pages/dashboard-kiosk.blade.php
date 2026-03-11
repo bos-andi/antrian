@@ -9,13 +9,20 @@
     <div class="relative mb-8">
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center space-x-4">
-                <div
-                    class="w-16 h-16 bg-gradient-to-br flex items-center justify-center">
-                   <img src="{{asset('storage/'.$setting->image)}}" alt="">
+                @if($setting?->image)
+                <div class="w-16 h-16 flex items-center justify-center overflow-hidden rounded-lg bg-gray-100">
+                    <img src="{{ asset('storage/' . $setting->image) }}" alt="" class="w-full h-full object-contain">
                 </div>
+                @else
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                </div>
+                @endif
                 <div>
-                    <h1 class="text-xl md:text-3xl font-bold text-gray-800">{{ $setting->name }}</h1>
-                    <p class="text-gray-600">{{ $setting->address }}</p>
+                    <h1 class="text-xl md:text-3xl font-bold text-gray-800">{{ $setting?->name ?? 'Sistem Antrian' }}</h1>
+                    <p class="text-gray-600">{{ $setting?->address ?? '-' }}</p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ Perhatikan untuk menjalankan atau mensetup project ini.
 3. Import Database dengan file antrian.sql pada projek
 7. Jalankan perintah `php artisan serve` untuk menjalankan projek
 8. Buka browser dan kunjungi link http://127.0.0.1:8000
-9. Login dengan email (admin@gmail.com) dan password (admin123)
+9. Login dengan email (admin@andidev.id) dan password (andidev.id)
 
 Aplikasi siap di gunakan....
 

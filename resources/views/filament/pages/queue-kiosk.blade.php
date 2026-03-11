@@ -26,16 +26,19 @@
         <div class="w-full max-w-6xl">
 
             <!-- Service Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                 @foreach($services as $service)
                 <button
+                    type="button"
                     wire:click="print({{ $service->id }})"
-                    class="service-card group relative bg-white rounded-2xl shadow-lg hover:shadow-xl p-8 border border-gray-100 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                    wire:loading.attr="disabled"
+                    class="service-card group relative bg-white rounded-2xl shadow-lg hover:shadow-xl p-8 border-2 border-gray-100 min-h-[140px] cursor-pointer touch-manipulation transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02] active:scale-[0.98] overflow-hidden select-none"
+                    style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
 
                     <!-- Hover Background Effect -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
-                    <div class="relative">
+                    <div class="relative pointer-events-none">
                         <div class="flex items-center justify-between ">
                             <div class="flex items-center space-x-4">
                                 <!-- Dynamic Icon Container -->
@@ -59,13 +62,13 @@
                     </div>
 
                     <!-- Subtle Hover Effect -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
                     <!-- Active State Indicator -->
-                    <div class="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 animate-pulse"></div>
+                    <div class="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 animate-pulse pointer-events-none"></div>
 
                     <!-- Click Ripple Effect -->
-                    <div class="absolute inset-0 rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                         <div class="ripple-effect"></div>
                     </div>
                 </button>
@@ -90,7 +93,14 @@
     }
 
     .service-card:active {
-        transform: translateY(-8px) scale(1.01);
+        transform: translateY(-4px) scale(0.98);
+    }
+
+    /* Pastikan area tombol penuh bisa diklik/tap */
+    .service-card {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
     }
 
     .service-icon {

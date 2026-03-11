@@ -1,0 +1,138 @@
+================================================================================
+  PANDUAN INSTALASI APLIKASI ANTRIAN - LOCALHOST (XAMPP)
+================================================================================
+
+PERSYARATAN
+-----------
+1. XAMPP (Apache + MySQL + PHP 8.2 atau lebih)
+2. Composer (https://getcomposer.org)
+3. Node.js & npm (https://nodejs.org)
+4. Git (opsional, untuk clone)
+
+
+LANGKAH 1: JALANKAN XAMPP
+-------------------------
+- Buka XAMPP Control Panel
+- Start Apache
+- Start MySQL
+
+
+LANGKAH 2: BUAT DATABASE
+-------------------------
+1. Buka http://localhost/phpmyadmin
+2. Klik "New" / "Baru" untuk buat database baru
+3. Nama database: antrian
+4. Collation: utf8mb4_unicode_ci
+5. Klik Create
+
+ATAU lewat MySQL console:
+  CREATE DATABASE antrian CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+LANGKAH 3: SALIN / CLONE PROJECT
+--------------------------------
+- Jika sudah punya folder project, pastikan ada di dalam htdocs (misal: C:\xampp\htdocs\antrian)
+- Jika dari Git: git clone <url-repo> antrian
+  lalu masuk: cd antrian
+
+
+LANGKAH 4: FILE .ENV
+--------------------
+1. Salin file .env.example menjadi .env:
+   copy .env.example .env     (Windows CMD)
+   cp .env.example .env       (Git Bash / Linux)
+
+2. Buka .env dengan notepad/editor, sesuaikan:
+
+   APP_NAME="Antrian"
+   APP_URL=http://127.0.0.1:8000
+
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=antrian
+   DB_USERNAME=root
+   DB_PASSWORD=
+
+   (Kosongkan DB_PASSWORD jika MySQL XAMPP tanpa password)
+
+
+LANGKAH 5: COMPOSER
+-------------------
+Buka terminal/CMD di folder project, jalankan:
+
+  composer install
+
+Tunggu sampai selesai.
+
+
+LANGKAH 6: APP KEY
+------------------
+  php artisan key:generate
+
+
+LANGKAH 7: DATABASE (pilih salah satu)
+--------------------------------------
+
+Opsi A - Pakai file SQL (data contoh lengkap):
+  1. Import di phpMyAdmin: pilih database antrian -> Import -> pilih file antrian.sql -> Go
+  2. Lalu jalankan: php artisan migrate
+     (untuk memastikan tabel migrasi tercatat)
+
+Opsi B - Pakai migration + seeder (Pendaftaran Santri Baru):
+  php artisan migrate:fresh --seed
+
+  Ini akan membuat tabel baru dan mengisi:
+  - Admin: admin@andidev.id / andidev.id
+  - 1 layanan: Pendaftaran Santri Baru
+  - 5 loket (Loket 1 s/d 5)
+  - 5 operator: petugas.loket1@ponpes.id s/d petugas.loket5@ponpes.id (password: petugas123)
+
+
+LANGKAH 8: NPM & BUILD ASSETS
+-----------------------------
+  npm install
+  npm run build
+
+
+LANGKAH 9: STORAGE LINK (opsional, untuk upload file)
+-----------------------------------------------------
+  php artisan storage:link
+
+
+LANGKAH 10: JALANKAN APLIKASI
+-----------------------------
+  php artisan serve
+
+Buka browser: http://127.0.0.1:8000
+
+
+LOGIN
+-----
+- Email   : admin@andidev.id
+- Password: andidev.id
+
+(Jika pakai Opsi B seeder: sama. Jika pakai antrian.sql dan sudah diubah, gunakan kredensial yang ada di README/antrian.sql)
+
+
+TROUBLESHOOTING
+--------------
+- "vite is not recognized"  -> jalankan: npm install lalu npm run build
+- "Access denied for user"   -> cek DB_USERNAME dan DB_PASSWORD di .env
+- "SQLSTATE connection"     -> pastikan MySQL di XAMPP sudah Start
+- "Class not found"         -> composer dump-autoload
+- Halaman blank / 500       -> cek storage/logs/laravel.log, pastikan .env dan APP_KEY ada
+
+
+RINGKASAN PERINTAH (setelah .env dan database siap)
+---------------------------------------------------
+  composer install
+  php artisan key:generate
+  php artisan migrate:fresh --seed
+  npm install
+  npm run build
+  php artisan serve
+
+================================================================================
+  Selesai. Aplikasi Antrian siap dipakai di localhost.
+================================================================================
